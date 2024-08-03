@@ -1,7 +1,7 @@
 'use client'
 import { useRef } from "react";
 import Image from "next/image";
-import classes from "../Promo.module.css";
+import classes from "@Styles/Promo.module.css";
 
 import { Carousel } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
