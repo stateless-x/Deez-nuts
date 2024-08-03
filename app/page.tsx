@@ -7,8 +7,14 @@ export default function Home() {
   return (
   <>
     <PromoBanner />
+    <div className="
+    bg-[#d7ffc4] 
+      py-12 
+      sm:py-24"
+    >
     <HeroSection />
     <CardList />
+    </div>
     <Footer />
   </>
   );

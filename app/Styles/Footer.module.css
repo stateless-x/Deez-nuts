@@ -1,10 +1,9 @@
 .footer {
-  @media (max-width: 48em) {
-    margin:0;
-  }
-
   border-top: rem(1px) solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
-  margin: 4rem 12rem 0 12rem;
+  padding: 1rem 12rem 1rem 12rem;
+  @media (max-width: 48em) {
+    padding: 0;
+  }
 }
 
 .inner {
