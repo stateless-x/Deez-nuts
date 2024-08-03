@@ -1,8 +1,25 @@
 'use client'
 import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
 import { useRouter } from 'next/navigation';
+import { products } from '../mock';
+
+enum STATUS {
+  sales = 'สินค้าลดราคา',
+  hot = 'สินค้าขายดี',
+  outOfStock = 'สินค้าหมด',
+}
+
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  status: keyof typeof STATUS | null;
+}
 
 const CardList = () => {
+
   return (
     <div className="
       grid 
@@ -14,23 +31,33 @@ const CardList = () => {
       sm:mx-24
       lg:mx-48
 ">
-      {Array.from({ length: 6 }).map((_, index) => (
-        <MockCard key={index} />
+      {products.map((product) => (
+        <MockCard key={product.id} product={product} />
       ))}
     </div>
   )
 }
 
-const MockCard = () => {
-  const imageName = 'Images/Card/mixednut.webp';
-  const title = 'แอลม่อน';
-  const detail = 'ถั่วแสนอร่อย กินแล้วมีพลัง';
+const MockCard = ({ product }: { product: Product }) => {
   const router = useRouter();
-
+  
   const handleClick = () => {
-    router.push(`/item/1`);
+    router.push(`/item/${product.id}`);
   };
 
+  const getStatusColor = (status: keyof typeof STATUS | null) => {
+    switch (status) {
+      case 'sales':
+        return 'pink';
+      case 'hot':
+        return 'green';
+      case 'outOfStock':
+        return 'gray';
+      default:
+        return null;
+    }
+  };
+  const statusColor = getStatusColor(product.status);
   return (
     <>
    <Card
@@ -42,17 +69,21 @@ const MockCard = () => {
     >
       <Card.Section>
         <Image
-          src={imageName}
-          alt={`image of ${title}`}
+          src={product.image}
+          alt={`image of ${product.name}`}
           className="h-100 w-full object-cover"
           w={400}
         />
       </Card.Section>
-      <Text fw={500} size="lg" mt="md">
-        {title}
-      </Text>
+
+      <Group justify="space-between" mt="md">
+        <Text fw={500} size="lg" >{product.name}</Text>
+        {statusColor && product.status && (
+          <Badge color={statusColor} size="lg">{STATUS[product.status]}</Badge>
+        )}
+      </Group>
       <Text mt="xs" c="dimmed" size="sm">
-        {detail}
+        {product.description}
       </Text>
     </Card>
     </>
