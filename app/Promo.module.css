@@ -1,0 +1,21 @@
+.controls {
+  transition: opacity 150ms ease;
+  opacity: 0;
+}
+
+.control {
+  background-color: #fff;
+}
+
+.root:hover .controls {
+  opacity: 1;
+}
+
+.indicator {
+  background-color: #fff;
+  opacity: 0.6;
+
+  &[data-active] {
+    opacity: 1;
+    }
+}
