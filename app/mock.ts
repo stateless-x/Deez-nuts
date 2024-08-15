@@ -2,6 +2,7 @@ enum STATUS {
   sales = 'สินค้าลดราคา',
   hot = 'สินค้าขายดี',
   outOfStock = 'สินค้าหมด',
+  new = 'สินค้าใหม่',
 }
 
 interface Product {
